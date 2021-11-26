@@ -1,0 +1,12 @@
+#include "hsh.h"
+
+args_t *add(args_t **head, char *arg)
+{
+	args_t *node;
+	char *str;
+
+	if (arg == NULL)
+	{
+		
+	}
+}
