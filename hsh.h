@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <sys/wait.h>
 
 typedef struct args_s
 {
@@ -15,6 +16,8 @@ typedef struct args_s
 } args_t;
 
 args_t *add(args_t **head, const char *arg);
+size_t print_list(const args_t *h);
+char **transform(args_t **head);
 
 #define UNUSED(x) (void)(x);
 
