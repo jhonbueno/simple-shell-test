@@ -1,53 +1,62 @@
 #include "hsh.h"
 
+
 int main(int argc, char **argv, char **env)
 {
-	UNUSED(argc);
-	UNUSED(argv);
-	UNUSED(env);
+    UNUSED(argc);
+    UNUSED(argv);
+    UNUSED(env);
 
-	int read, tty = 1, ret, status;
-	char *line, *cpy, *arg = NULL, **args = NULL;
-	size_t len = 0;
-	args_t *arguments = NULL;
-	pid_t pid;
 
-	isatty(STDIN_FILENO) == 0 ? tty = 0 : tty;
+    pid_t pid;
+    int read, tty = 1, ret = 0, status = 0;
+    char *line = NULL, *cpy = NULL, *arg = NULL, **args = NULL;
+    size_t len = 0;
+    args_t *arguments = NULL;
 
-	do {
-		tty == 1 ? write(STDOUT_FILENO, "($) ", 4) : tty;
-		fflush(stdin);
-		read = getline(&line, &len, stdin);
-		if (read != -1)
-			return (-1);
+    isatty(STDIN_FILENO) == 0 ? tty = 0 : tty;
 
-		cpy = strdup(line);
 
-		for (; (arg = strtok(cpy, " \t\n")); cpy = NULL)
-		{
-			if (arg == NULL)
-				break;
-			add(&arguments, arg);
-		}
-		/*print_list(arguments);*/
+    do {
+        /* read */
 
-		args = transform(&arguments);
+        tty == 1 ? write(STDOUT_FILENO, "($) ", 4) : tty;
+        fflush(stdin);
+        read = getline(&line, &len, stdin);
+        if(read == -1)
+            return (-1);
 
-		pid = fork();
-		if (pid == -1)
-			return (-1);
-		else if (pid == 0)
-		{
-			ret = execve(args[0], args, env);
-			if (ret == -1)
-				return (-1);
-		}
-		else
-		{
-			wait(&status);
-		}
-		arguments = NULL;
-	} while (1);
+        /* Parse */
 
-	return (0);
+        cpy = strdup(line);
+
+        for (; (arg = strtok(cpy, " \t\n")); cpy = NULL, add(&arguments, arg))
+            if(arg == NULL)
+                break;
+        args = transform(&arguments);
+
+        /* execute */
+
+
+        pid = fork();
+        if(pid == -1)
+            return (-1);
+        else if(pid == 0)
+        {
+            ret = execve(args[0], args, env);
+            if (ret == -1)
+                return -1;
+        }
+        else {            wait(&status);
+        }
+
+
+        /* clean */
+
+	/* deleteArgs(arguments),free(line), free(args), free(cpy);*/
+        arguments = NULL;
+
+    }while(1);
+
+    return (0);
 }
