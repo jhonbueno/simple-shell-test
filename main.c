@@ -22,6 +22,13 @@ int main(int argc, char **argv, char **env)
 
 		cpy = strdup(line);
 
+		for (argCount = 1; (arg = strtok(cpy, " \t\n")); argCount++,
+			     cpy = NULL)
+		{
+			if (arg == NULL)
+				break;
+			
+		}
 	} while (1);
 
 	return (0);
