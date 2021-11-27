@@ -14,7 +14,7 @@ typedef struct args_s
 	struct args_s *next;
 } args_t;
 
-
+args_t *add(args_t **head, const char *arg);
 
 #define UNUSED(x) (void)(x);
 
