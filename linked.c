@@ -1,6 +1,6 @@
 #include "hsh.h"
 
-aargs_t *add(args_t **head, const char *arg)
+args_t *add(args_t **head, const char *arg)
 {
 	args_t *tmp = *head;
 	args_t *new_n;
