@@ -6,7 +6,7 @@ int main(int argc, char **argv, char **env)
 	UNUSED(argv);
 	UNUSED(env);
 
-	int read, tty = 1, argCount;
+	int read, tty = 1;
 	char *line, *cpy, *arg = NULL;
 	size_t len = 0;
 	args_t *arguments;
@@ -23,8 +23,7 @@ int main(int argc, char **argv, char **env)
 
 		cpy = strdup(line);
 
-		for (argCount = 1; (arg = strtok(cpy, " \t\n")); argCount++,
-			     cpy = NULL)
+		for (; (arg = strtok(cpy, " \t\n"));)
 		{
 			if (arg == NULL)
 				break;

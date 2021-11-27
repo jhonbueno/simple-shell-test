@@ -38,7 +38,7 @@ size_t print_list(const args_t *h)
 			printf("[%d] %s\n", 0, "(nil)");
 		}
 		else
-			printf("%s\n", tmp->str);
+			printf("%s\n", tmp->arg);
 		tmp = tmp->next;
 		n += 1;
 	}
