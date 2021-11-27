@@ -9,6 +9,7 @@ int main(int argc, char **argv, char **env)
 	int read, tty = 1, argCount;
 	char *line, *cpy, *arg = NULL;
 	size_t len = 0;
+	args_t *arguments;
 
 	isatty(STDIN_FILENO) == 0 ? tty = 0 : tty;
 
@@ -27,7 +28,7 @@ int main(int argc, char **argv, char **env)
 		{
 			if (arg == NULL)
 				break;
-			
+			add(&arguments, arg);
 		}
 	} while (1);
 
