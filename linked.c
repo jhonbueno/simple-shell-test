@@ -1,59 +1,51 @@
 #include "hsh.h"
 
-args_t *add(args_t **head, const char *arg)
+args_t *add(args_t **head, char* arg)
 {
-	args_t *tmp = *head;
-	args_t *new_n;
+    args_t *node,  *aux;
 
-	if (!head || !arg)
-		return (NULL);
-	new_n = malloc(sizeof(args_t));
-	if (new_n == NULL)
-		return (NULL);
-	new_n->arg = strdup(arg);
-	new_n->next = NULL;
-	if (*head == NULL)
-	{
-		*head = new_n;
-		return (new_n);
-	}
-	while (tmp->next != NULL)
-	{
-		tmp = tmp->next;
-	}
-	tmp->next = new_n;
-	return (new_n);
+    aux = *head;
+
+    if(arg == NULL)
+    {
+        return (NULL);
+    }
+
+    node = malloc(sizeof(args_t));
+
+    if(node == NULL)
+        return (NULL);
+
+    node->arg = arg;
+    node->next = NULL;
+
+    if(*head == NULL)
+    {
+        *head = node;
+        return (node);
+    }
+
+    while(aux->next)
+        aux = aux->next;
+
+    aux->next = node;
+
+    return (aux);
 }
-
-size_t print_list(const args_t *h)
+void deleteArgs(args_t *head)
 {
-	size_t n = 0;
-	const args_t *tmp;
+	args_t *node, *next;
 
-	tmp = h;
-	while (tmp != NULL)
+	node = head;
+
+	while (node != NULL)
 	{
-		if (tmp->arg == NULL)
-		{
-			printf("[%d] %s\n", 0, "(nil)");
-		}
-		else
-			printf("%s\n", tmp->arg);
-		tmp = tmp->next;
-		n += 1;
+		next = node->next;
+		free(node->arg);
+		free(node);
+		node = next;
 	}
-	return (n);
-}
-
-size_t count(args_t *head)
-{
-	int i;
-
-	for (i = 0; head; i++)
-	{
-		head = head->next;
-	}
-	return (i);
+	head = NULL;
 }
 
 char **transform(args_t **head)
