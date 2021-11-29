@@ -24,7 +24,10 @@ int main(int argc, char **argv, char **env)
         fflush(stdin);
         read = getline(&line, &len, stdin);
         if(read == -1)
-            return (-1);
+	{
+		printf("\n");
+		return (-1);
+	}
 
         /* Parse */
 
@@ -45,10 +48,13 @@ int main(int argc, char **argv, char **env)
         {
             ret = execve(args[0], args, env);
             if (ret == -1)
-                return -1;
+	    {
+		    printf("./shell: No such file or directory\n");
+		    return -1;
+	    }
         }
-        else {            wait(&status);
-        }
+        else
+		wait(&status);
 
 
         /* clean */
