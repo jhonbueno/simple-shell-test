@@ -1,0 +1,44 @@
+.TH Our simple_shell "December 9 2021" "0.1" "simple_shell Manual Page"
+.SH NAME
+simple_shell - Simple UNIX command interpreter (simple_shell)
+.SH SYNOPSIS
+simple_shell [file_name]
+.SH DESCRIPTION
+.sp
+simple_shell is an emulation of the UNIX command interpreter
+.SH Overview
+.sp
+As a simulation simple_shell reads command lines from either a file or the terminal, interprets them, and generally executes other commands.
+.SH INVOCATION
+.sp
+[space fort info]
+.sp
+An interactive shell generally prompts before each command and handles programming and command errors differently.
+.SH EXAMPLES
+.sp
+.SH INTERACTIVE MODE:
+.sp
+$ [examples]
+.sp
+$ [examples]
+.SH Output: [examples]
+.sp
+$ [examples]
+.sp
+$ [examples]
+.SH Output: [examples]
+.sp
+.SH NON-INTERACTIVE MODE:
+.sp
+$ [examples]
+.SH Output: [examples]
+__________________________________________________________
+.SH RETURN VALUE
+Exit status at the end of a run
+.SH BUGS
+For any encounter of errors please report to the emails:
+.sp
+[mails]
+.SH AUTHOR
+Written by [names]
+
