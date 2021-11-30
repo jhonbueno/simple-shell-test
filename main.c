@@ -17,15 +17,22 @@ int main(void)
         tty == 1 ? write(STDOUT_FILENO, "($) ", 4) : tty;
         fflush(stdin);
         read = getline(&line, &len, stdin);
-        if(read == -1)
+	if (read == EOF)
+		break;
+	if (*line == '\n' || *line == '\t')
+		continue;
+/*        if(read == -1)
 	{
 		printf("\n");
 		return (-1);
-	}
+		}*/
 
         /* Parse */
 
         args = add(line);
+
+	if (args == NULL)
+		continue;
 
         /* execute */
 
