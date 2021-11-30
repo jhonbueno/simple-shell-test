@@ -26,16 +26,9 @@ int main(void)
 
         /* Parse */
 
-        cpy = _strdup(line);
-
-        for (; (arg = strtok(cpy, " \t\n")); cpy = NULL, add(&arguments, arg))
-            if(arg == NULL)
-                break;
-        args = transform(&arguments);
-	free(cpy);
+        args = add(line);
 
         /* execute */
-
 
         pid = fork();
 
@@ -56,12 +49,11 @@ int main(void)
 		_free_double_pointer(args);
 	}
 
-
         /* clean */
 
         arguments = NULL;
 
     }while(1);
-    free(arguments);
+    free(line);
     return (0);
 }
