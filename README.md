@@ -97,4 +97,4 @@ $
 ```
 
 # Authors
-Duvan Jaramillo & Juan Felipe Rodriguez.
+Jhon Bueno & Juan Camilo Arce.
