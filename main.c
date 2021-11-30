@@ -1,64 +1,48 @@
 #include "hsh.h"
 
-
+/**
+ * main - UNIX command line interpreter
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
-    pid_t pid;
-    int read, tty = 1, ret = 0, status = 0;
-    char *line = NULL, **args = NULL;
-    size_t len = 0;
+	pid_t pid;
+	int read, tty = 1, ret = 0, status = 0;
+	char *line = NULL, **args = NULL;
+	size_t len = 0;
 
-    isatty(STDIN_FILENO) == 0 ? tty = 0 : tty;
+	isatty(STDIN_FILENO) == 0 ? tty = 0 : tty;
 
 
-    do {
-        /* read */
-
-        tty == 1 ? write(STDOUT_FILENO, "($) ", 4) : tty;
-        fflush(stdin);
-        read = getline(&line, &len, stdin);
-	if (read == EOF)
-		break;
-	if (*line == '\n' || *line == '\t')
-		continue;
-/*        if(read == -1)
-	{
-		printf("\n");
-		return (-1);
-		}*/
-
-        /* Parse */
-
-        args = add(line);
-
-	if (args == NULL)
-		continue;
-
-        /* execute */
-
-        pid = fork();
-
-        if(pid == -1)
-            return (-1);
-
-        else if (pid == 0)
-        {
-		if (execve(findpath(args[0], &ret), args, environ) == -1)
+	do {
+		tty == 1 ? write(STDOUT_FILENO, "($) ", 4) : tty;
+		fflush(stdin);
+		read = getline(&line, &len, stdin);
+		if (read == EOF)
+			break;
+		if (*line == '\n' || *line == '\t')
+			continue;
+		args = add(line);
+		if (args == NULL)
+			continue;
+		pid = fork();
+		if (pid == -1)
+			return (-1);
+		else if (pid == 0)
 		{
-			_free_double_pointer(args);
-			exit(ret);
+			if (execve(findpath(args[0], &ret), args, environ) == -1)
+			{
+				_free_double_pointer(args);
+				exit(ret);
+			}
 		}
-        }
-        else
-	{
-		wait(&status);
-		_free_double_pointer(args);
-	}
-
-	/* clean */
-	line = NULL;
-
-    }while(1);
-    free(line);
-    return (0);
+		else
+		{
+			wait(&status);
+			_free_double_pointer(args);
+		}
+		line = NULL;
+	} while (1);
+	free(line);
+	return (0);
 }

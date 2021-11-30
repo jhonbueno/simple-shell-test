@@ -21,6 +21,6 @@ void _free_double_pointer(char **d_pointer);
 char *str_concat(char *s1, char *s2);
 char *_strdup(char *str);
 
-#define UNUSED(x) (void)(x);
+#define UNUSED(x) (void)(x)
 
 #endif /* _H_SHELL */
