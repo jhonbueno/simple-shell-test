@@ -1,13 +1,8 @@
 #include "hsh.h"
 
 
-int main(int argc, char **argv, char **env)
+int main(void)
 {
-    UNUSED(argc);
-    UNUSED(argv);
-    UNUSED(env);
-
-
     pid_t pid;
     int read, tty = 1, ret = 0, status = 0;
     char *line = NULL, *cpy = NULL, *arg = NULL, **args = NULL;
@@ -42,19 +37,26 @@ int main(int argc, char **argv, char **env)
 
 
         pid = fork();
+	printf("el PID: %d\n", pid);
         if(pid == -1)
             return (-1);
-        else if(pid == 0)
+
+        else if (pid == 0)
         {
-            ret = execve(args[0], args, env);
-            if (ret == -1)
-	    {
-		    printf("./shell: No such file or directory\n");
-		    return -1;
-	    }
+		printf("Findpath 1 %s\n", findpath(args[0], &ret));
+		if (execve(findpath(args[0], &ret), args, environ) == -1)
+		{
+			printf("./shell: No such file or directory\n");
+			exit(ret);
+		}
+		printf("Findpath 2 %s\n", findpath(args[0], &ret));
         }
         else
+	{
+		printf("Print else\n");
 		wait(&status);
+		printf("Estatus: %d\n", status);
+	}
 
 
         /* clean */

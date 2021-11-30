@@ -18,11 +18,13 @@
  * @stack: stack
  * @queue: false
  */
+
 typedef struct path_s
 {
     char* path;
     struct args_s *next;
 } path_t;
+
 /**
  * struct settings_s - settings for all the program
  * @file: file
@@ -61,11 +63,12 @@ typedef struct settings_s
 } settings_t;
 
 extern settings_t settings;
+extern char **environ;
 
 args_t *add(args_t **head, char* arg);
 void deleteArgs(args_t *head);
 char **transform(args_t **head);
-
+char *findpath(char *command, int *ret);
 
 #define UNUSED(x) (void)(x);
 
