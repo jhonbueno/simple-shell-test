@@ -45,30 +45,16 @@ typedef struct args_s
  * @stack: stack
  * @queue: false
  */
-typedef struct settings_s
-{
-	/* read */
-	char *line;
-	size_t len;
-	int read;
 
-	/* parse */
-	args_t *arguments;
-	path_t *path;
-	/* execute */
-	int _ret;
-	/*general*/
-	_Bool tty;
-	int nrExcutedCommands;
-} settings_t;
-
-extern settings_t settings;
 extern char **environ;
 
 args_t *add(args_t **head, char* arg);
-void deleteArgs(args_t *head);
 char **transform(args_t **head);
 char *findpath(char *command, int *ret);
+void _free_double_pointer(char **d_pointer);
+char *str_concat(char *s1, char *s2);
+void free_list(args_t **head);
+char *_strdup(char *str);
 
 #define UNUSED(x) (void)(x);
 

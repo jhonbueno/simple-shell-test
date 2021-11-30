@@ -32,21 +32,6 @@ args_t *add(args_t **head, char* arg)
 
     return (aux);
 }
-void deleteArgs(args_t *head)
-{
-	args_t *node, *next;
-
-	node = head;
-
-	while (node != NULL)
-	{
-		next = node->next;
-		free(node->arg);
-		free(node);
-		node = next;
-	}
-	head = NULL;
-}
 
 char **transform(args_t **head)
 {
@@ -63,5 +48,6 @@ char **transform(args_t **head)
 		arguments[i] = h->arg;
 	}
 	arguments[i] = NULL;
+	free_list(&h);
 	return (arguments);
 }

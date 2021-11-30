@@ -26,45 +26,42 @@ int main(void)
 
         /* Parse */
 
-        cpy = strdup(line);
+        cpy = _strdup(line);
 
         for (; (arg = strtok(cpy, " \t\n")); cpy = NULL, add(&arguments, arg))
             if(arg == NULL)
                 break;
         args = transform(&arguments);
+	free(cpy);
 
         /* execute */
 
 
         pid = fork();
-	printf("el PID: %d\n", pid);
+
         if(pid == -1)
             return (-1);
 
         else if (pid == 0)
         {
-		printf("Findpath 1 %s\n", findpath(args[0], &ret));
 		if (execve(findpath(args[0], &ret), args, environ) == -1)
 		{
-			printf("./shell: No such file or directory\n");
+			_free_double_pointer(args);
 			exit(ret);
 		}
-		printf("Findpath 2 %s\n", findpath(args[0], &ret));
         }
         else
 	{
-		printf("Print else\n");
 		wait(&status);
-		printf("Estatus: %d\n", status);
+		_free_double_pointer(args);
 	}
 
 
         /* clean */
 
-	/* deleteArgs(arguments),free(line), free(args), free(cpy);*/
         arguments = NULL;
 
     }while(1);
-
+    free(arguments);
     return (0);
 }

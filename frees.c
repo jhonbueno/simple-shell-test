@@ -23,14 +23,20 @@ void _free_double_pointer(char **d_pointer)
 	free(d_pointer);
 }
 
-/**
- * _free_parent - Entry point
- * @buffer: pointer
- * @commands: double pointer
- * Return: void
- */
-void _free_parent(char *buffer, char **commands)
+void free_list(args_t **head)
 {
-	free(buffer);
-	_free_double_pointer(commands);
+	args_t *tmp;
+
+	if (head == NULL)
+		return;
+	tmp = *head;
+
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		free(*head);
+		*head = tmp;
+	}
+
+	*head = NULL;
 }
