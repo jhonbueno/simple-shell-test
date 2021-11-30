@@ -5,9 +5,8 @@ int main(void)
 {
     pid_t pid;
     int read, tty = 1, ret = 0, status = 0;
-    char *line = NULL, *cpy = NULL, *arg = NULL, **args = NULL;
+    char *line = NULL, **args = NULL;
     size_t len = 0;
-    args_t *arguments = NULL;
 
     isatty(STDIN_FILENO) == 0 ? tty = 0 : tty;
 
@@ -49,9 +48,8 @@ int main(void)
 		_free_double_pointer(args);
 	}
 
-        /* clean */
-
-        arguments = NULL;
+	/* clean */
+	line = NULL;
 
     }while(1);
     free(line);
