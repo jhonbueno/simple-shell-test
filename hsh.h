@@ -13,6 +13,12 @@
 
 extern char **environ;
 
+/**
+ * struct builtin_s - Struct that represents a builtin function.
+ *
+ * @name:the name of the bulitin.
+ * @fptr: the function pointer.
+ */
 typedef struct builtin_s
 {
 	char *name;

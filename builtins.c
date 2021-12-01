@@ -1,5 +1,13 @@
 #include "hsh.h"
 
+/**
+ * get_builtin - select the bulitin from the array of builtins.
+ * @line: the command in line.
+ * @args: the command + his arguments in a matrix.
+ * @ret: pointer to return value.
+ *
+ * Return: 0 if not find the bultin, 1 else.
+ */
 int get_builtin(char *line, char **args, int *ret)
 {
 	int i;
@@ -17,6 +25,15 @@ int get_builtin(char *line, char **args, int *ret)
 	return (0);
 }
 
+/**
+ * end - finishes the progrman with ret.
+ * @line: the command in line.
+ * @args: the command + his arguments in a matrix.
+ * @ret: pointer to return value.
+ * @environ: environment variable.
+ *
+ * Return: end the execution of the shell.
+ */
 int end(char *line, char **args, int *ret, char **environ)
 {
 	UNUSED(environ);
@@ -25,10 +42,18 @@ int end(char *line, char **args, int *ret, char **environ)
 	exit(*ret);
 }
 
+/**
+ * _printenv - prints the environment.
+ * @line: the command in line.
+ * @args: the command + his arguments in a matrix.
+ * @ret: pointer to return value.
+ * @environ: environment variable.
+ *
+ * Return: 1 if sucess.
+ */
 int _printenv(char *line, char **args, int *ret, char **environ)
 {
 	unsigned int i, len;
-/*	char **env = environ;*/
 
 	UNUSED(line);
 	UNUSED(args);

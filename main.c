@@ -12,7 +12,6 @@ int main(void)
 	size_t len = 0;
 
 	isatty(STDIN_FILENO) == 0 ? tty = 0 : tty;
-
 	do {
 		tty == 1 ? write(STDOUT_FILENO, "($) ", 4) : tty;
 		fflush(stdin);
@@ -37,15 +36,12 @@ int main(void)
 					_free_double_pointer(args);
 					exit(ret);
 				}
-			}
-			else
+			} else
 			{
 				wait(&status);
 				_free_double_pointer(args);
-			}
-			line = NULL;
-		}
-		else
+			} line = NULL;
+		} else
 			_free_double_pointer(args);
 	} while (1);
 	free(line);
