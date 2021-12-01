@@ -13,7 +13,6 @@ int main(void)
 
 	isatty(STDIN_FILENO) == 0 ? tty = 0 : tty;
 
-
 	do {
 		tty == 1 ? write(STDOUT_FILENO, "($) ", 4) : tty;
 		fflush(stdin);
@@ -25,23 +24,29 @@ int main(void)
 		args = add(line);
 		if (args == NULL)
 			continue;
-		pid = fork();
-		if (pid == -1)
-			return (-1);
-		else if (pid == 0)
+		if (get_builtin(line, args, &ret) == 0)
 		{
-			if (execve(findpath(args[0], &ret), args, environ) == -1)
+			pid = fork();
+			if (pid == -1)
+				return (-1);
+			else if (pid == 0)
 			{
-				_free_double_pointer(args);
-				exit(ret);
+				if (execve(findpath(args[0], &ret),
+					   args, environ) == -1)
+				{
+					_free_double_pointer(args);
+					exit(ret);
+				}
 			}
+			else
+			{
+				wait(&status);
+				_free_double_pointer(args);
+			}
+			line = NULL;
 		}
 		else
-		{
-			wait(&status);
 			_free_double_pointer(args);
-		}
-		line = NULL;
 	} while (1);
 	free(line);
 	return (0);

@@ -58,5 +58,3 @@ char **add(char *line)
 	command[i] = NULL;
 	return (command);
 }
-
-
