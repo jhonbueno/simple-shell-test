@@ -7,7 +7,7 @@
 int main(void)
 {
 	pid_t pid;
-	int read, tty = 1, ret = 0, status = 0;
+	int tty = 1, ret = 0, status = 0;
 	char *line = NULL, **args = NULL;
 	size_t len = 0;
 
@@ -15,8 +15,7 @@ int main(void)
 	do {
 		tty == 1 ? write(STDOUT_FILENO, "($) ", 4) : tty;
 		fflush(stdin);
-		read = getline(&line, &len, stdin);
-		if (read == EOF)
+		if (getline(&line, &len, stdin) == EOF)
 			break;
 		if (*line == '\n' || *line == '\t')
 			continue;
@@ -30,15 +29,16 @@ int main(void)
 				return (-1);
 			else if (pid == 0)
 			{
-				if (execve(findpath(args[0], &ret),
-					   args, environ) == -1)
+				if (execve(findpath(args[0], &ret), args, environ) == -1)
 				{
+					free(line);
 					_free_double_pointer(args);
 					exit(ret);
 				}
 			} else
 			{
 				wait(&status);
+				free(line);
 				_free_double_pointer(args);
 			} line = NULL;
 		} else
