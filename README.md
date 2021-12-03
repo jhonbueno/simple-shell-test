@@ -1,7 +1,6 @@
 # The Gates Of Shell - 0x16. C - Simple Shell
 
-![Gates of Shell] ( https://s3.amazonaws.com/intranet-projects-files/
-holbertonschool-low_level_programming/235/shell.jpeg)
+![Gates of Shell] ( https://s3.amazonaws.com/intranet-projects-files/holbertonschool-low_level_programming/235/shell.jpeg)
 
 # Description
 
