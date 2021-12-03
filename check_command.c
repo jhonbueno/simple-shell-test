@@ -7,13 +7,15 @@
  * Return: none.
  */
 
-void print_errors(char *commandtoprint)
+void print_errors(char *argv_0, int count_t, char *commandtoprint)
 {
-	char *not_found = ": command not found\n";
-
-	commandtoprint = str_concat(commandtoprint, not_found);
-	write(STDOUT_FILENO, commandtoprint, _strlen(commandtoprint));
-	free(commandtoprint);
+	write(STDERR_FILENO, argv_0, _strlen(argv_0));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, (count_t + '0'), 1);
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, commandtoprint, _strlen(commandtoprint));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, "not found", 9);
 }
 
 
@@ -48,7 +50,7 @@ char *_getenv(const char *name)
  * Return: the complete path for executing non-built-ins.
  */
 
-char *findpath(char *command, int *ret)
+char *findpath(char *command, int *ret, char *argv_0)
 {
 	char *path, *commandtoprint;
 	struct stat stats;
@@ -76,7 +78,7 @@ char *findpath(char *command, int *ret)
 		tok = strtok(NULL, ":");
 	}
 
-	print_errors(commandtoprint);
+	print_errors(argv_0, count_token(command), commandtoprint);
 	free(command);
 	*ret = 127;
 	return (NULL);

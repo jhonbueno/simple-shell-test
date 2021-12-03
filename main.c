@@ -4,7 +4,7 @@
  * main - UNIX command line interpreter
  * Return: Always 0 (Success)
  */
-int main(void)
+int main(char **argv)
 {
 	pid_t pid;
 	int tty = 1, ret = 0, status = 0;
@@ -29,7 +29,7 @@ int main(void)
 				return (-1);
 			else if (pid == 0)
 			{
-				if (execve(findpath(args[0], &ret), args, environ) == -1)
+				if (execve(findpath(args[0], &ret, argv[0]), args, environ) == -1)
 				{
 					free_two(line, args);
 					exit(ret);
@@ -39,7 +39,10 @@ int main(void)
 				wait(&status);
 				free_two(line, args);
 				if (WIFEXITED(status))
+				{
 					ret = WEXITSTATUS(status);
+					printf("Status: %d\n", ret);
+				}
 			} line = NULL;
 		} else
 			_free_double_pointer(args);

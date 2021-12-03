@@ -29,7 +29,7 @@ int _strlen(char *s);
 int _strncmp(char *s1, char *s2, int n);
 char *_strncpy(char *dest, char *src, int n);
 char **add(char *line);
-char *findpath(char *command, int *ret);
+char *findpath(char *command, int *ret, char **);
 void _free_double_pointer(char **d_pointer);
 char *str_concat(char *s1, char *s2);
 char *_strdup(char *str);
@@ -37,6 +37,8 @@ int get_builtin(char *line, char **args, int *ret);
 int end(char *line, char **args, int *ret, char **environ);
 int _printenv(char *line, char **args, int *ret, char **environ);
 void free_two(char *line, char **args);
+void print_errors(char *argv_0, int count_t, char *commandtoprint);
+
 
 #define UNUSED(x) (void)(x)
 
