@@ -94,4 +94,5 @@ $
 | addtokens.c |  Tokenize and create double pointer with command arguments |
 
 # Authors
-Jhon Bueno & Juan Camilo Arce.
+- Jhon Bueno
+- Juan Camilo Arce.
