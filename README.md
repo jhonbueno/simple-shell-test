@@ -80,6 +80,18 @@ $ ./shell
 ($) exit
 $
 ```
+## Files and Descriptions
+|  FILE  |  DESCRIPTION  |
+| ------------- | ------------- |
+| main.c | Main function for UNIX command line interpreter |
+| hsh.h | Header file with all prototypes and imported libraries |
+| builtins.c  |  It contains function for builtin commands |
+| check_command.c | This file contain the functions for get environment, find path and print error |
+| frees.c | It contins the functions for free the memory |
+| AUTHORS | Contains authors of the project |
+| man_1_simple_shell | Man page with documentation of simple shell |
+| strings.c | String manipulation functions |
+| addtokens.c |  Tokenize and create double pointer with command arguments |
 
 # Authors
 Jhon Bueno & Juan Camilo Arce.
