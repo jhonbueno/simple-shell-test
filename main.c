@@ -2,6 +2,9 @@
 
 /**
  * main - UNIX command line interpreter
+ * @argc: unused.
+ * @argv: argument vector.
+ *
  * Return: Always 0 (Success)
  */
 int main(int __attribute__((unused)) argc, char **argv)

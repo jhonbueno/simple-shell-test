@@ -22,7 +22,13 @@ void _free_double_pointer(char **d_pointer)
 
 	free(d_pointer);
 }
-
+/**
+ * free_two - frees both line and the matix.
+ * @line: string with the command and arguments.
+ * @args: matrix of tokens.
+ *
+ * Return: void.
+ */
 void free_two(char *line, char **args)
 {
 	free(line);

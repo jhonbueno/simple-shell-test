@@ -2,6 +2,8 @@
 
 /**
  * print_errors - print errors.
+ * @argv_0: argv in position 0.
+ * @count_t: count of tokens in command.
  * @commandtoprint: input command.
  *
  * Return: none.
@@ -49,6 +51,7 @@ char *_getenv(const char *name)
  * findpath - retrive path from getenv and find mach using the command.
  * @command: args[0] the commmand.
  * @ret: return value.
+ * @argv_0: argv on 0 position.
  *
  * Return: the complete path for executing non-built-ins.
  */
