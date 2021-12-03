@@ -9,13 +9,16 @@
 
 void print_errors(char *argv_0, int count_t, char *commandtoprint)
 {
+	char num;
+
+	num = count_t + '0';
 	write(STDERR_FILENO, argv_0, _strlen(argv_0));
 	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, (count_t + '0'), 1);
+	write(STDERR_FILENO, &num, 1);
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, commandtoprint, _strlen(commandtoprint));
 	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, "not found", 9);
+	write(STDERR_FILENO, "not found\n", 10);
 }
 
 

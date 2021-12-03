@@ -25,11 +25,12 @@ typedef struct builtin_s
 	int (*fptr)(char *line, char **args, int *, char **);
 } builtin_t;
 
+unsigned int count_token(char *line);
 int _strlen(char *s);
 int _strncmp(char *s1, char *s2, int n);
 char *_strncpy(char *dest, char *src, int n);
 char **add(char *line);
-char *findpath(char *command, int *ret, char **);
+char *findpath(char *command, int *ret, char *);
 void _free_double_pointer(char **d_pointer);
 char *str_concat(char *s1, char *s2);
 char *_strdup(char *str);

@@ -4,7 +4,7 @@
  * main - UNIX command line interpreter
  * Return: Always 0 (Success)
  */
-int main(char **argv)
+int main(int __attribute__((unused)) argc, char **argv)
 {
 	pid_t pid;
 	int tty = 1, ret = 0, status = 0;
@@ -39,10 +39,7 @@ int main(char **argv)
 				wait(&status);
 				free_two(line, args);
 				if (WIFEXITED(status))
-				{
 					ret = WEXITSTATUS(status);
-					printf("Status: %d\n", ret);
-				}
 			} line = NULL;
 		} else
 			_free_double_pointer(args);
