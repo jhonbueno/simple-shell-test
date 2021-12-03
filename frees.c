@@ -26,5 +26,5 @@ void _free_double_pointer(char **d_pointer)
 void free_two(char *line, char **args)
 {
 	free(line);
-	_free_double_pointer(line, args);
+	_free_double_pointer(args);
 }
