@@ -1,35 +1,41 @@
-# Gates Of S-Hell - Simple Shell
-![Gates of Shell](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-low_level_programming/235/shell.jpeg)
+# The Gates Of Shell - 0x16. C - Simple Shell
+
+![Gates of Shell] ( https://s3.amazonaws.com/intranet-projects-files/
+holbertonschool-low_level_programming/235/shell.jpeg)
 
 # Description
-The simple shell is an application that reads lines from either a file or theterminal, interprets them, and executes them. This shell includes the basic functionality of a traditional Unix-like command line user interface. 
-Standard functions and system calls employed in simple_shell include:
-   `access, execve, exit, fork, free, getline, malloc, perror, signal, stat, wait, write.`
+
+Simple Shell is a program that reads the user input from file or
+terminal, make a proccess to interprets the instruction, and executes
+them. This is a simple shell that has the more basic functionality for
+linux commands.
 
 # Requirements
 
-simple_shell is designed to run in the `Ubuntu 14.04.5 LTS` linux environment and to be compiled using the GNU compiler collection v. `gcc 4.8.4` with flags`-Wall, -Werror, -Wextra, and -pedantic.`
+This Simple Shell is designed to run in the `Ubuntu 20.04.3 LTS` linux
+environment and cmpiled with GNU compiler using flags `-Wall -Werror
+-Wextra -pedantic -std=gnu89`.
 
 # Installation
 
-   - Compile: `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
-   - Run the shell in interactive mode: `./hsh`
-   - Run the shell in non-interactive mode:
-   - Example `echo "pwd" | ./hsh`
+   - Compile: `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o
+   - shell` Run the shell in interactive mode: `./shell`
+   - Run the shell in non-interactive mode: Example `echo "ls" | ./shell`
 
-# Usage
+# How to use
 
-The simple shell is an application that reads lines from either a file or theterminal, interprets them, and executes them. In a similar manner to sh, however with more limited functionality. 
+This simple shell program is an application that reads the input from user
+from a file or the terminal, proccess the instructions and executes them.
 
 ### Signals:
 
-While running in interactive mode, ignores the keyboard input `Ctrl+c`. Alternatively, an input of end-of-file `Ctrl+d` will exit the program.
+The input 'Ctrl+D' EOF - end-of-file will exit the program.
 
 User hits `Ctrl+d` in the third line.
 ```
-~> ./shellby
-~> ^C
-~> ^C
+($) ./shell
+($) ^C
+($) ^D
 ```
 #### Env
   * Usage: `env`
@@ -37,20 +43,11 @@ User hits `Ctrl+d` in the third line.
 
 Example:
 ```
-$ ./hsh
-~> env
-NVM_DIR=/home/vagrant/.nvm
+($) ./shell
+($) env
+SHELL=/bin/bash
 ...
 ```
-#### $?
-`?` is substitued with the return value of the last program executed.
-
-Example:
-```
-$ echo "echo $?" | ./hsh
-0
-```
-
 #### $$
 The second `$` is substitued with the current process ID.
 
