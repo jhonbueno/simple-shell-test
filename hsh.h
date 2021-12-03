@@ -36,6 +36,7 @@ char *_strdup(char *str);
 int get_builtin(char *line, char **args, int *ret);
 int end(char *line, char **args, int *ret, char **environ);
 int _printenv(char *line, char **args, int *ret, char **environ);
+void free_two(char *line, char **args);
 
 #define UNUSED(x) (void)(x)
 

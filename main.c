@@ -31,15 +31,15 @@ int main(void)
 			{
 				if (execve(findpath(args[0], &ret), args, environ) == -1)
 				{
-					free(line);
-					_free_double_pointer(args);
+					free_two(line, args);
 					exit(ret);
 				}
 			} else
 			{
 				wait(&status);
-				free(line);
-				_free_double_pointer(args);
+				free_two(line, args);
+				if (WIFEXITED(status))
+					ret = WEXITSTATUS(status);
 			} line = NULL;
 		} else
 			_free_double_pointer(args);
