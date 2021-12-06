@@ -33,12 +33,12 @@ void print_errors(char *argv_0, int count_t, char *commandtoprint)
 
 char *_getenv(const char *name)
 {
-	int len = strlen((char *)name);
+	int len = _strlen((char *)name);
 	char **env = environ;
 
 	while (*env != NULL)
 	{
-		if (strncmp(*env, (char *)name, len) == 0 && env[0][len] == '=')
+		if (_strncmp(*env, (char *)name, len) == 0 && env[0][len] == '=')
 		{
 			return (*env + len + 1);
 		}
