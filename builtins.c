@@ -20,6 +20,9 @@ int get_builtin(char *line, char **args, int *ret)
 		{NULL, NULL}
 	};
 
+	
+	
+	
 	for (i = 0; arr_builtin[i].name != NULL; i++)
 	{
 		if (_strncmp(args[0], arr_builtin[i].name, 4) == 0)
