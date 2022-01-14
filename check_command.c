@@ -14,7 +14,7 @@ void print_errors(char *argv_0, int count_t, char *commandtoprint)
 	char num;
 
 	num = count_t + '0';
-	write(STDERR_FILENO, argv_0, _strlen(argv_0));
+	  write(STDERR_FILENO, argv_0, _strlen(argv_0));
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, &num, 1);
 	write(STDERR_FILENO, ": ", 2);
@@ -22,7 +22,6 @@ void print_errors(char *argv_0, int count_t, char *commandtoprint)
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, "not found\n", 10);
 }
-
 
 /**
  * _getenv - funtion to get the PATH form the environment variable.
